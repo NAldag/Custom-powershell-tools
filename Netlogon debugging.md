@@ -2,7 +2,7 @@
 
 Status: Erster Entwurf
 
-Zur Vorbereitung der Überführung in GPO Logik und Erleicherung der zwischenzeitlichen Administrierung möchte ich tote/kaputte Skripte, Karteileichen und Altlasten effizient entfernen. Diese Werkzeuge sollen bei der Ergründung helfen.
+Zur Vorbereitung der Überführung in GPO Logik und Erleichterung der zwischenzeitlichen Administrierung möchte ich tote/kaputte Skripte, Karteileichen und Altlasten effizient entfernen. Diese Werkzeuge sollen bei der Ergründung helfen.
 
 ## Karteileichen finden
 Methode A: Last Access Time (sofern aktiv)
