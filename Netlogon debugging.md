@@ -90,12 +90,37 @@ Get-ChildItem \\netlogon\*.bat -Recurse | ForEach-Object {
 
 Per Append an an jedes Skript am Anfang einfügen:
 
-echo %date% %time% %username% %computername% >> \\server\logshare\logon_audit_start.txt
+echo START;%date%;%time%;%username%;%computername%;%~nx0 >> \\server\logshare\logon_audit_%computername%.txt 2>nul
 
 ### Welche Skripte starten zwar, brechen aber ab:
 
 Per Append am ENDE jedes Skripts einfügen:
 
-echo %date% %time% %username% %computername% >> \\server\logshare\logon_audit_finish.txt
+echo END;%date%;%time%;%username%;%computername%;%~nx0 >> \\server\logshare\logon_audit_%computername%.txt 2>nul
 
 Nach ein paar Wochen sollten wir nutzbare Information haben.
+
+### Skript gesteuerte Auswertung des Log Files
+
+ToDo:Ausgabe alle Skripte die starten, aber abbrechen
+
+Ausgabe aller Skripte, die während des Loggins nie gestartet wurden:
+
+```
+
+$path = "\\netlogon"
+
+Get-ChildItem $path -Filter *.bat -Recurse | ForEach-Object {
+    $content = Get-Content $_.FullName
+
+    $start = 'echo START;%date%;%time%;%username%;%computername%;%~nx0 >> \\server\logshare\logon_audit_%computername%.txt 2>nul'
+    $end   = 'echo END;%date%;%time%;%username%;%computername%;%~nx0 >> \\server\logshare\logon_audit_%computername%.txt 2>nul'
+
+    if ($content -notmatch "logon_audit") {
+        $newContent = @($start) + $content + @($end)
+        Set-Content $_.FullName $newContent
+    }
+}
+
+```
+
