@@ -11,6 +11,7 @@ Wann wurde welches Skript zuletzt gelesen?
 
 PowerShell:
 
+
 ```
 
 Get-ChildItem \\domain\netlogon -Recurse |
