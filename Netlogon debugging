@@ -12,7 +12,7 @@ Wann wurde welches Skript zuletzt gelesen?
 PowerShell:
 
 
-```
+```powershell
 
 Get-ChildItem \\domain\netlogon -Recurse |
 Where-Object {$_.Extension -eq ".bat"} |
