@@ -9,8 +9,6 @@ Methode A: Last Access Time (sofern aktiv)
 Auf dem Fileserver prüfen:
 Wann wurde welches Skript zuletzt gelesen?
 
-PowerShell:
-
 
 ```
 
@@ -47,6 +45,7 @@ Get-ChildItem \\netlogon\*.bat | Where-Object {
 
 Ergebnis:
 Verwaiste User Skripte
+
 Computer-Skripte prüfen:
 
 ```
@@ -104,7 +103,7 @@ Nach ein paar Wochen sollten wir nutzbare Information haben.
 
 ToDo:Ausgabe alle Skripte die starten, aber abbrechen
 
-Ausgabe aller Skripte, die während des Loggins nie gestartet wurden:
+Ausgabe aller Skripte, die während des Logins nie gestartet wurden:
 
 ```
 
