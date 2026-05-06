@@ -25,7 +25,7 @@ Sort-Object LastAccessTime
 
 LastAccessTime ist oft deaktiviert 
 
-## Mapping gegen AD (robuster, aber wenn Karteileichen auch in AD vorhanden > ohne effekt)
+## Mapping gegen AD (robuster, aber wenn Karteileichen auch in AD vorhanden ohne effekt)
 
 Skript Schema:
 
