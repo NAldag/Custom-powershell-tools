@@ -21,7 +21,7 @@ Sort-Object LastAccessTime
 
 90–180 Tage nicht angefasst > tot
 
-LastAccessTime ist oft deaktiviert 
+LastAccessTime aktiviert?
 
 ## Mapping gegen AD (robuster, aber wenn Karteileichen auch in AD vorhanden ohne effekt)
 
