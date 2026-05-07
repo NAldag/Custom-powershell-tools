@@ -4,7 +4,7 @@ Status: Erster Entwurf
 
 Zur Vorbereitung der Überführung in GPO Logik und Erleichterung der zwischenzeitlichen Administrierung möchte ich tote/kaputte Skripte, Karteileichen und Altlasten effizient entfernen. Diese Werkzeuge sollen bei der Identifizierung helfen.
 
-## Karteileichen finden
+## Verwaiste Skripte finden
 Methode A: Last Access Time (sofern aktiv)
 Auf dem Fileserver prüfen:
 Wann wurde welches Skript zuletzt gelesen?
