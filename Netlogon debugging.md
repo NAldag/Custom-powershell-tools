@@ -67,22 +67,6 @@ verwaiste Host-Skripte
 Typische Ursachen:
 Netzressource existiert nicht mehr/zeigt ins leere > Skript bricht ab
 
-PowerShell: Suche nach Risikobefehlen
-
-```
-
-Get-ChildItem \\netlogon\*.bat -Recurse | ForEach-Object {
-    $content = Get-Content $_.FullName
-    if ($content -match "net use|rundll32|printui") {
-        [PSCustomObject]@{
-            File = $_.Name
-            Risk = "Contains network/printer ops"
-        }
-    }
-}
-
-```
-
 ## Custom Logging einführen (Risikofrei)
 
 ### Was wird wirklich aufgerufen?
