@@ -72,7 +72,7 @@ Netzressource existiert nicht mehr/zeigt ins leere > Skript bricht ab
 ### Was wird wirklich aufgerufen?
 
 Per Append an an jedes Skript am Anfang einfügen:
-
+ausgabe dateiname?
 echo START;%date%;%time%;%username%;%computername%;%~nx0 >> \\server\logshare\logon_audit_%computername%.txt 2>nul
 
 ### Welche Skripte starten zwar, brechen aber ab:
@@ -88,6 +88,8 @@ Nach ein paar Wochen sollten wir nutzbare Information haben.
 ToDo:Ausgabe alle Skripte die starten, aber abbrechen
 
 Ausgabe aller Skripte, die während des Logins nie gestartet wurden:
+
+
 
 ```
 
