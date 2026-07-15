@@ -4,10 +4,8 @@ Auszug und Abgleich zweier Gruppen
 
 ```powershell
 
-# Modul laden
 Import-Module ActiveDirectory
 
-# Variablen definieren
 $GruppeA = "CN=Gruppe-A,OU=Gruppen,DC=domain,DC=de"
 $GruppeB = "CN=Gruppe-B,OU=Gruppen,DC=domain,DC=de"
 
