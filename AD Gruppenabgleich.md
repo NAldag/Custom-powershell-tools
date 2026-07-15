@@ -1,6 +1,6 @@
 # Werkzeuge zur Erleichterung der Gruppenmigration
 
-Auszug und Abgleich zweier Gruppen
+## Auszug und Abgleich zweier Gruppen
 
 ```powershell
 
@@ -19,7 +19,7 @@ Compare-Object -ReferenceObject $MitgliederA -DifferenceObject $MitgliederB
 ```
 
 
-Export in CSV
+## Export in CSV
 
 
 ```Powershell
@@ -30,13 +30,30 @@ Get-ADGroupMember -Identity "Gruppenname" | Select-Object Name, SamAccountName |
 ```
 
 
-Übertragung der Differenz
+## Übertragung der Differenz
 
 
 ```powershell
 
 Get-ADGroupMember -Identity "Gruppe-A" | ForEach-Object {
     Add-ADGroupMember -Identity "Gruppe-B" -Members $_.SamAccountName
+}
+
+```
+
+## Alternativ: CSV Vergleich und Übertrag der Variable FehlendeUser
+
+```powershell
+
+
+$SollMitglieder = Import-Csv -Path "C:\temp\mitarbeiter.csv" | Select-Object -ExpandProperty AccountName
+$IstMitglieder = Get-ADGroupMember -Identity "Deine-AD-Gruppe" | Select-Object -ExpandProperty SamAccountName
+
+$FehlendeUser = Compare-Object -ReferenceObject $SollMitglieder -DifferenceObject $IstMitglieder | Where-Object SideIndicator -eq "<="
+
+# Fehlende Benutzer der Gruppe hinzufügen
+foreach ($User in $FehlendeUser) {
+    Add-ADGroupMember -Identity "Deine-AD-Gruppe" -Members $User.InputObject
 }
 
 ```
