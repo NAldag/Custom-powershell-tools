@@ -1,5 +1,7 @@
 # Werkzeuge zur Erleichterung der Gruppenmigration
 
+Disclaimer: Erstentwürfe, die auf die jeweilige Umgebung angepasst werden müssen
+
 ## Auszug und Abgleich zweier Gruppen
 
 ```powershell
