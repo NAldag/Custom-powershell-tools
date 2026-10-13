@@ -4,8 +4,9 @@
 ```powershell
 
 # Pfade anpassen
-$InputFile  = "C:\Temp\GefundeneAccounts.csv"
-$OutputFile = "C:\Temp\Exchange_Abgleich.csv"
+$InputFile  = "Pfad zur InputDatei"
+$OutputFile = "Pfad zur OutputDatei"
+
 
 # In der Exchange Management Shell ausführen
 $Accounts = Import-Csv -Path $InputFile -Delimiter ';'
@@ -47,9 +48,8 @@ $Results = foreach ($Account in $Accounts) {
 }
 
 $Results | Export-Csv -Path $OutputFile `
-    -Delimiter ';' -NoTypeInformation -Encoding UTF8
+    -Delimiter ';' -NoTypeInformation -Encoding UTF8BOM
 
 Write-Host "Fertig. Ergebnis gespeichert unter: $OutputFile"
-
 
 ```
