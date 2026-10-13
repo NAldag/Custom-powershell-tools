@@ -1,11 +1,11 @@
+# Getestet: Funktioniert einwandfrei, liefert gewünschte Ergebnisse.
+
 
 ```powershell
 
-
-
 # Pfade anpassen
-$InputFile  = "C:\Temp\Mitarbeiter.txt"
-$OutputFile = "C:\Temp\GefundeneAccounts.csv"
+$InputFile  = "Pfad zum Input File.txt"
+$OutputFile = "Pfad zu outputfile.sv"
 
 Import-Module ActiveDirectory
 
@@ -43,7 +43,12 @@ $Results = foreach ($Line in Get-Content -Path $InputFile) {
     foreach ($User in $MatchesAD) {
 
         # OU aus dem Distinguished Name ermitteln
-        $OU = ($User.DistinguishedName -split ',', 2)[1]
+		
+        $OU = (
+			($User.DistinguishedName -split ',') |
+			Where-Object { $_ -like 'OU=*' } |
+			Select-Object -First 1
+		) -replace '^OU=',''
 
         # Kontostatus lesbar ausgeben
         $Status = if ($User.Enabled) {
@@ -63,7 +68,11 @@ $Results = foreach ($Line in Get-Content -Path $InputFile) {
 }
 
 $Results | Export-Csv -Path $OutputFile `
-    -Delimiter ';' -NoTypeInformation -Encoding UTF8
+    -Delimiter ';' -NoTypeInformation -Encoding UTF8BOM
+
+Write-Host "Fertig. Ergebnis gespeichert unter: $OutputFile"
+
+
 
 Write-Host "Fertig. Ergebnis gespeichert unter: $OutputFile"
 
