@@ -72,9 +72,4 @@ $Results | Export-Csv -Path $OutputFile `
 
 Write-Host "Fertig. Ergebnis gespeichert unter: $OutputFile"
 
-
-
-Write-Host "Fertig. Ergebnis gespeichert unter: $OutputFile"
-
-
 ```
