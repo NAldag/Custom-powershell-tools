@@ -7,15 +7,14 @@
 $InputFile  = "Pfad zur InputDatei"
 $OutputFile = "Pfad zur OutputDatei"
 
-
-# In der Exchange Management Shell ausführen
+# In der Exchange Management Shell ausfÃ¼hren
 $Accounts = Import-Csv -Path $InputFile -Delimiter ';'
 
 $Results = foreach ($Account in $Accounts) {
 
     $SamAccountName = $Account.SamAccountName
 
-    # Exchange-Empfänger anhand des AD-Kontonamens suchen
+    # Exchange-EmpfÃ¤nger anhand des AD-Kontonamens suchen
     $Recipients = @(
         Get-Recipient -ResultSize Unlimited |
             Where-Object {
@@ -48,8 +47,10 @@ $Results = foreach ($Account in $Accounts) {
 }
 
 $Results | Export-Csv -Path $OutputFile `
-    -Delimiter ';' -NoTypeInformation -Encoding UTF8BOM
+    -Delimiter ';' -NoTypeInformation -Encoding UTF8
 
 Write-Host "Fertig. Ergebnis gespeichert unter: $OutputFile"
+
+
 
 ```
