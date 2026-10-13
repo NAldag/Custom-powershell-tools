@@ -1,6 +1,6 @@
 
-
 ```powershell
+
 
 # Pfade anpassen
 $InputFile  = "C:\Temp\Mitarbeiter.txt"
@@ -26,10 +26,19 @@ $Results = foreach ($Line in Get-Content -Path $InputFile) {
         }
     )
 
+    if ($MatchesAD.Count -eq 0) {
+        [PSCustomObject]@{
+            Nachname       = $Nachname
+            Vorname        = $Vorname
+            SamAccountName = ""
+        }
+        continue
+    }
+
     foreach ($User in $MatchesAD) {
         [PSCustomObject]@{
-            Nachname      = $Nachname
-            Vorname       = $Vorname
+            Nachname       = $Nachname
+            Vorname        = $Vorname
             SamAccountName = $User.SamAccountName
         }
     }
@@ -40,4 +49,4 @@ $Results | Export-Csv -Path $OutputFile `
 
 Write-Host "Fertig. Ergebnis gespeichert unter: $OutputFile"
 
-````
+```
