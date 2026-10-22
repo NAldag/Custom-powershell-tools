@@ -1,0 +1,48 @@
+Connect-ExchangeOnline
+
+# Step 1
+```powershell
+
+Get-EXOMailbox -Identity "gesucht@firma.de" `
+  -ErrorAction SilentlyContinue |
+  Format-List DisplayName,PrimarySmtpAddress,RecipientTypeDetails,
+              ExchangeGuid,ExternalDirectoryObjectId
+
+```
+
+# Step 2
+```powershell
+
+Get-EXOMailbox -SoftDeletedMailbox -ResultSize Unlimited |
+  Where-Object {
+    $_.PrimarySmtpAddress -eq "gesucht@firma.de" -or
+    $_.EmailAddresses -contains "smtp:gesucht@firma.de"
+  } |
+  Format-List DisplayName,PrimarySmtpAddress,ExchangeGuid,
+              WhenSoftDeleted
+
+```
+
+# Step 3
+```powershell
+
+Get-EXOMailbox -InactiveMailboxOnly -ResultSize Unlimited |
+  Where-Object {
+    $_.PrimarySmtpAddress -eq "gesucht@firma.de" -or
+    $_.EmailAddresses -contains "smtp:gesucht@firma.de"
+  } |
+  Format-List DisplayName,PrimarySmtpAddress,ExchangeGuid,
+              WhenSoftDeleted
+
+```
+
+# Step 4
+```powershell
+
+Get-Recipient -Identity "gesucht@firma.de" `
+  -IncludeSoftDeletedRecipients `
+  -ErrorAction SilentlyContinue |
+  Format-List Name,PrimarySmtpAddress,RecipientType,
+              RecipientTypeDetails,ExternalDirectoryObjectId
+
+```
